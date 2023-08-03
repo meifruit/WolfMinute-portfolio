@@ -1,0 +1,50 @@
+.chart-container {
+  width: 600px;
+  align-items: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+}
+
+.analytics-container {
+  width: 1000px;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+
+  h2 {
+    padding: 6px;
+  }
+}
+
+.avatar-search-a {
+  align-items: center;
+  // display: flex;
+  background-color: #E6E6F9;
+  padding: 20px;
+  // margin-left: 5px;
+  // width: 250px;
+  border-radius: 1rem;
+  border-radius: 20px;
+
+  p {
+    color: $headers-color;
+  }
+
+}
+
+.avataravatar-a {
+  align-items: center;
+  display: flex;
+  padding: 2rem;
+  margin-left: 5px;
+  margin-right: 6px;
+
+}
+
+.tab-content {
+  background: white;
+  padding: 16px;
+  box-shadow: 0px 0px 2px black;
+}

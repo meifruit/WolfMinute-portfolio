@@ -1,0 +1,30 @@
+ <% if users.length >= 1 %>
+  <% users.each_with_index do |user, index| %>
+    <style>
+      .check {
+          display: none;
+      }
+      .check:checked+label{
+        box-shadow: 0px 0px 2px black;
+        background: lavender;
+        border-radius: 4px;
+        padding: 2px;
+          }
+      .check:checked+label img{
+        border:2px solid #000064;
+        transition:0.3s ease;
+      }
+    </style>
+    <input
+            data-form-steps-target="checkbox"
+            id= "name<%=index%>"
+            type="checkbox"
+            name="users[]"
+            value= "<%= user.name%>"
+            class="check">
+      <label for="name<%=index%>">
+        <%= image_tag user.photo.key ? cl_image_path(user.photo.key) :  "gorilla.jpg", class: "avatar"%>
+        <%= user.name %>
+      </label>
+    <% end %>
+  <% end %>

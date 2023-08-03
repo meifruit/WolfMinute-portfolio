@@ -1,0 +1,26 @@
+<button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Summary</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-controller="copy">
+    <div class="modal-dialog" style="margin-left:100px;">
+      <div class="modal-content" style="width: 1300px;">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Summary</h1>
+          <% if !@summary.nil? %>
+            <button data-action="click->copy#copyToClipboard" class="btn btn-success m-2"><i class="fa-regular fa-clone"></i>
+              copy</button>
+          <% end %>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if @summary.nil?  %>
+            <p>No summary</p>
+          <% else %>
+            <% @summary.each do |line| %>
+              <p data-copy-target="text"><%= line %>.</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

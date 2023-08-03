@@ -1,0 +1,48 @@
+<div class="outer-container">
+  <div class="container m-auto" data-controller="search-users">
+    <h1>New Meeting</h1>
+    <!-- Search people input -->
+    <div class="d-flex animate__animated animate__flash">
+      <%= image_tag current_user.photo.key ? cl_image_path(current_user.photo.key) :  "gorilla.jpg", style: "width: 30px; height:30px; margin-right: 16px", class: "avatar", alt: "dropdown menu" %>
+      <form action="/meetings/new" method="get" data-search-users-target="form">
+        <input
+          type="text"
+          name="query"
+          data-search-users-target="input"
+          data-action="keyup->search-users#search"
+          value="<%= params[:query] %>"
+          placeholder="Type the members..."
+          style="width: 400px; background: lavender; border: none; box-shadow: 0px 0px 2px black;"
+          />
+        </form>
+      </div>
+      <!-- Search people output -->
+      <div id="form-container" data-controller="form-steps" style="margin-top: 8px;">
+        <%= simple_form_for @meeting do |f| %>
+          <div data-form-steps-target="step" class="input-button animate__animated animate__fadeInRight" style="margin-left: 64px; width:1000px;">
+            <img src="<%=asset_path('logo.png')%>" style="height: 50px;" alt="">
+            <div data-search-users-target="users">
+              <% if @users_filtered.present? && @users_filtered.length.positive? %>
+                <%= render 'list' %>
+              <% else %>
+                <p style="font-size: revert">No users found.</p>
+              <% end %>
+            </div>
+            <div data-search-users-target="usersClicked" class="hidden"></div>
+            <button style="box-shadow: 0px 0px 2px black;"type="button" data-action="click->form-steps#nextStep2" class="button-general ms-3" role="button">Next</button>
+          </div>
+          <!-- description input -->
+          <div data-form-steps-target="step" class="hidden animate__animated animate__flash">
+            <div class="d-flex" style="margin-top: 20px;">
+              <%= image_tag current_user.photo.key ? cl_image_path(current_user.photo.key) :  "gorilla.jpg", style: "width: 30px; height:30px; margin-right: 16px", class: "avatar", alt: "dropdown menu" %>
+              <%= f.input :description  , label: false, placeholder: "Type description", input_html: {style: "width: 400px; background: lavender; margin-right: 24px;", data: {form_steps_target: "description"}} %>
+              <button style="box-shadow: 0px 0px 2px black;" type="button" data-action="click->form-steps#fetchMeetingInfo" class="button-general" role="button">Next</button>
+            </div>
+            <div class="optimaltime" data-form-steps-target="gptTimeResult">
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="loader" style="display: none;"></div>
+  </div>

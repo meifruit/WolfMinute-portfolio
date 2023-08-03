@@ -1,0 +1,30 @@
+.avatar-card {
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.avatar-card p {
+  font-size: 13px;
+  margin-bottom: 4px;
+
+}
+
+.user-card-container .avatar-card{
+
+  background: white;
+  position:fixed;
+  z-index: 1;
+}
+.user-card-container:not(:hover) .avatar-card,
+.avatar-search-icon:not(:hover) .avatar-card
+ {
+  display:none ;
+}
+
+
+.avatar-search-icon:hover :nth-child(3) {
+  display: none;
+}

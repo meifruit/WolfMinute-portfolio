@@ -1,0 +1,77 @@
+// Graphical variables
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome";
+
+// Your CSS partials
+@import "components/index";
+@import "pages/index";
+
+@import "flatpickr/dist/flatpickr.css";
+// @import "flatpickr/dist/themes/airbnb";
+
+@import "simple_calendar";
+
+body {
+  background-color: $background-color;
+}
+
+h1 {
+  font-family: $headers-font;
+  color: $headers-color;
+  font-size: xxx-large;
+}
+
+h3 {
+  font-family: $sub-headers-font;
+  color: $sub-headers-color;
+  font-size: xx-large;
+}
+
+h4 {
+  font-family: $headers-font;
+  color: $headers-color;
+  font-size: xx-large;
+}
+
+p {
+  font-family: $body-font;
+  color: $body-color;
+  font-size: large;
+  ;
+  ;
+}
+
+.user-container {
+  width: 600px;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+#loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: url('https://media.giphy.com/media/feN0YJbVs0fwA/giphy.gif') center center no-repeat;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+.fa-house:hover {
+  transition: 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.2, 1.2);
+}
+
+.navbar-brand:hover {
+  transition: 0.3s ease;
+  transform: scale(1.1, 1.1);
+}

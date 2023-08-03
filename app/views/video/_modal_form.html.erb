@@ -1,0 +1,5 @@
+<%= simple_form_for([video]) do |f| %>
+  <%= f.input :summary, input_html: { rows: 10, style: "height: 220px; background: lavender; box-shadow: 0px 0px 2px black; padding: 8px; margin: 16px; width: 1200px; margin-top: 8px;" } %>
+  <%= f.input :actions, input_html: { style: "height: 220px; background: lavender; box-shadow: 0px 0px 2px black; padding: 8px; margin: 16px; width: 1200px; margin-top: 8px;" } %>
+  <%= f.submit "Send message", class: "btn btn-primary" %>
+<% end %>

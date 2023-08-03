@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@popperjs/core": "^2.11.7",
+    "@rails/actioncable": "^7.0.5",
+    "@rails/ujs": "^7.0.5",
+    "@vonage/vivid": "^3.13.0",
+    "bootstrap": "^5.2.3",
+    "flatpickr": "^4.6.13",
+    "stimulus": "^3.2.1",
+    "stimulus-chartjs": "^5.0.0",
+    "stimulus-content-loader": "^4.1.0",
+    "stimulus-dropdown": "^2.1.0",
+    "stimulus-popover": "^6.2.0",
+    "stimulus-read-more": "^4.1.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  }
+}

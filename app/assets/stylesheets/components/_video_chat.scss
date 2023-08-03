@@ -1,0 +1,125 @@
+.video-container {
+  margin: 0.3rem;
+  padding: 0.2rem;
+
+  position: relative;
+}
+
+.video-chat {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.videochat-title {
+  padding-top: 0.5rem;
+  align-items: center;
+text-align: center;
+margin-right: 1rem;
+  p {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.main-video-chat {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+  padding-left: 3rem;
+}
+
+.video-attendees {
+padding: 0.5rem;
+}
+
+.video-container1 {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.videochatroom {
+
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  // position: fixed;
+  // top: 16px;
+
+
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    border-bottom: 1px solid $gray-200;
+    margin-bottom: 0;
+    padding: 1rem;
+  }
+
+  .messages {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  #new_message {
+    border-top: 1px solid $gray-200;
+    padding: 1rem;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.recording-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recording-button {
+  display: flex;
+  align-items: center;
+}
+
+.audio-button {
+  height: 100%;
+}
+
+.pop-up-buttons {
+position: absolute;
+top: -1.2rem;
+left: -12rem;
+}
+
+.big-icon {
+  font-size: 2em; /* Adjust the size as desired */
+}
+
+.audio-button {
+  /* Add any additional styles you want */
+  color:  #000064; /* Change the color to your preference */
+  /* Add more CSS properties as needed */
+  background-color: lavender;
+  border: lavender;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
+.audio-button:hover{
+  opacity: 0.5;
+}
+
+.video-attendees-lol {
+  margin-left: 1rem;
+  margin-top: 1rem;
+}

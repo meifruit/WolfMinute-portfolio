@@ -1,0 +1,218 @@
+<div class="index-container" data-controller="calendar">
+  <div class="left" data-controller="search-users">
+    <div class="refresh">
+    </div>
+    <div class="avatar-search">
+      <i class="fa-solid fa-user-group fa-2xl" style="color: #000064
+      "></i>
+      <form action="/meetings" method="get" data-search-users-target="form">
+        <input
+          class="index-input"
+          style="background: lavender; border-radius:5px;"
+          type="text"
+          name="query"
+          data-search-users-target="input"
+          data-action="keyup->search-users#search"
+          value="<%= params[:query] %>"
+          >
+        </form>
+      </div>
+      <div id="form-container" class="avataravatar">
+        <div>
+          <div data-search-users-target="users">
+            <% if @users_filtered.present? && @users_filtered.length.positive? %>
+              <%= render 'avatars', users: @users_filtered %>
+            <% end %>
+          </div>
+        </div>
+        <div data-search-users-target="usersClicked" class="hidden"></div>
+      </div>
+      <%= link_to meetings_analytics_path,  class: "text-decoration-none" do%>
+        <div class="btn btn-analytics" >
+          <i class="fa-solid fa-chart-line fa-2xl" style="color: #000064
+          "></i>
+          <p>Analytics</p>
+        </div>
+      <% end %>
+      <div class="btn btn-organizing" data-action="click->calendar#toggle">
+        <i class="fa-solid fa-clipboard fa-2xl" style="color: #000064;"></i>
+        <p>Created Meetings</p>
+      </div>
+      <div class="created-meeting" data-calendar-target="meetings">
+        <p class="meeting-title-a">Past Meetings</p>
+        <% if @past_meetings.any?  %>
+          <% @past_meetings.each do |meeting| %>
+            <div class="meeting-title">
+              <i class="fa-solid fa-circle"></i>
+              <p class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal<%=meeting.id%>" ><%= meeting.title.capitalize %></p>
+            </div>
+            <div class="modal fade" id="exampleModal<%=meeting.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><%= meeting.title.capitalize %></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="meeting-start-time">
+                      <i class="fa-solid fa-clock"></i>
+                      <p><%= meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
+                    </div>
+                    <div class="meeting-duration">
+                      <i class="fa-solid fa-clock-rotate-left"></i>
+                      <p> <%= meeting.duration %> minutes</p>
+                    </div>
+                    <div class="meeting-attendees">
+                      <i class="fa-solid fa-people-group"></i>
+                      <p>Attendees</p>
+                    </div>
+                    <% meeting.bookings.sort_by(&:status).each do |booking|%>
+                      <% case booking.status %>
+                      <%   when "accepted"%>
+                      <%= image_tag booking.user.photo.key ? cl_image_path(booking.user.photo.key) :  "gorilla.jpg", class: "avatar m-1 border border-3 border-success"%>
+                      <%   when "pending"%>
+                      <%= image_tag booking.user.photo.key ? cl_image_path(booking.user.photo.key) :  "gorilla.jpg", class: "avatar m-1 border border-3 border-info"%>
+                      <%   when "rejected"%>
+                      <%= image_tag booking.user.photo.key ? cl_image_path(booking.user.photo.key) :  "gorilla.jpg", class: "avatar m-1 border border-3 border-danger"%>
+                    <% else %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-muted" style="font-size: 12px">There are no past meetings</p>
+      <% end %>
+      <p class="meeting-title-a mt-3">Upcoming Meetings</p>
+      <% if @upcoming_meetings.any?  %>
+        <% @upcoming_meetings.each do |meeting| %>
+          <div class="meeting-title">
+            <i class="fa-solid fa-circle"></i>
+            <p class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal<%=meeting.id%>"><%= meeting.title.capitalize %></p>
+          </div>
+          <div class="modal fade" id="exampleModal<%=meeting.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"><%= meeting.title.capitalize %></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="meeting-start-time">
+                    <i class="fa-solid fa-clock"></i>
+                    <p><%= meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
+                  </div>
+                  <div class="meeting-duration">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <p> <%= meeting.duration %> minutes</p>
+                  </div>
+                  <div class="meeting-attendees">
+                    <i class="fa-solid fa-people-group"></i>
+                    <p>Attendees</p>
+                  </div>
+                  <% meeting.bookings.sort_by(&:status).each do |booking|%>
+                    <% case booking.status %>
+                    <%   when "accepted"%>
+                    <%= image_tag booking.user.photo.key ? cl_image_path(booking.user.photo.key) :  "gorilla.jpg", class: "avatar m-1 border border-3 border-success"%>
+                    <%   when "pending"%>
+                    <%= image_tag booking.user.photo.key ? cl_image_path(booking.user.photo.key) :  "gorilla.jpg", class: "avatar m-1 border border-3 border-info"%>
+                    <%   when "rejected"%>
+                    <%= image_tag booking.user.photo.key ? cl_image_path(booking.user.photo.key) :  "gorilla.jpg", class: "avatar m-1 border border-3 border-danger"%>
+                  <% else %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-muted" style="font-size: 12px">There are no upcoming meetings</p>
+    <% end %>
+  </div>
+</div>
+<div class="right">
+  <div class="container-c"  >
+    <div class="calendar-buttons">
+      <div class="switching">
+        <div class="btn btn-flat" data-action="click->calendar#monthly">
+          Month
+        </div>
+        <div class="btn btn-flat" data-action="click->calendar#weekly">
+          Week
+        </div>
+      </div>
+      <div class="btn-organizing-new switching" data-bs-toggle="modal" data-bs-target="#newMeeting" >
+        <%# <%= render 'modal', meeting: @meeting %>
+        <%= link_to new_meeting_path do%>
+          <i class="fa-regular fa-calendar-plus fa-2xl" style="color: #000064;"></i>
+          New Meeting
+        <% end %>
+      </div>
+    </div>
+    <div class="monthly-calendar" data-calendar-target="month">
+      <%= month_calendar(events: @meetings, attribute: :start_date) do |date, meetings| %>
+        <div class="dayday">
+          <%= date.mday  %>
+        </div>
+        <% meetings.each do |meeting| %>
+          <%= link_to meeting_path(meeting), class:"text-decoration-none" do %>
+            <% if  meeting.user == current_user%>
+              <div class="calendar-card" style="background-color: #164BB5">
+                <div class="calendar-title" style="color: white">
+                  <%= meeting.title.capitalize%>
+                </div>
+              </div>
+            <% else %>
+              <div class="calendar-card">
+                <div class="calendar-title">
+                  <%= meeting.title.capitalize %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="weekly-calendar hidden" data-calendar-target="week">
+      <%= week_calendar(events: @meetings, attribute: :start_date) do |date, meetings| %>
+        <div class="dayday">
+          <%= date.mday  %>
+        </div>
+        <% meetings.each do |meeting| %>
+          <%= link_to meeting_path(meeting), class:"text-decoration-none" do %>
+            <% if  meeting.user == current_user%>
+              <div class="calendar-card-week" style="background-color: #164BB5">
+                <div class="calendar-time">
+                  <%= meeting.start_date.strftime("%k:%M ~") %>
+                </div>
+                <div class="calendar-title">
+                  <%= meeting.title.capitalize %>
+                </div>
+              </div>
+            <% else %>
+              <div class="calendar-card-week">
+                <div class="calendar-time">
+                  <%= meeting.start_date.strftime("%k:%M ~") %>
+                </div>
+                <div class="calendar-title">
+                  <%= meeting.title.capitalize %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+</div>

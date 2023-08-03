@@ -1,0 +1,20 @@
+<div class="video-container1">
+  <div class="container videochatroom" style="background: white;"
+              data-controller="meeting-subscription"
+              data-meeting-subscription-meeting-id-value="<%= @meeting.id %>">
+    <%# <h1>#<%= @meeting.name %>
+    <div class="messages" data-meeting-subscription-target="messages">
+      <% @meeting.messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+      <% end %>
+    </div>
+    <% if @meeting.nil? # || @message.nil? %>
+      <p>Cannot render the form. Missing meeting or message.</p>
+    <% else %>
+      <%= simple_form_for [@meeting, Message.new],html: {class: "d-flex"} do |f|%>
+        <%= f.input :content,label: false,placeholder: "Message",wrapper_html: {class: "flex-grow-1"}%>
+        <%= f.submit "Send", class: "btn btn-primary mb-3 fa-fade" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

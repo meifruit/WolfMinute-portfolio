@@ -1,0 +1,548 @@
+.index-container {
+  // padding-top: 1rem;
+  padding-left: 1rem;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  background-color: $background-color;
+  padding-bottom: 3rem;
+}
+
+.right .container {
+  background-color: $background-color;
+  box-shadow: none;
+}
+
+.container-c {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+
+.simple-calendar {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 3px solid $sub-headers-color;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+.index-input {
+  width: 10vw;
+}
+
+.calendar-card {
+  flex-direction: column;
+  background-color: #000064;
+  padding: 3px 0.5rem;
+  margin: 5px;
+  color: white;
+  border-radius: 8px;
+  text-align: left;
+  font-family: $body-font;
+  width: 8vw;
+  // width: 100px; define a width for the elipsies to show otherwise the pill will just expand
+  transition: background-color 1s;
+  opacity: 1;
+}
+
+.calendar-card:hover {
+  opacity: 0.5;
+}
+
+
+.calendar-card-week {
+  flex-direction: column;
+  background-color: #000064;
+  padding: 1rem;
+  margin: 1rem;
+  color: white;
+  border-radius: 8px;
+  text-align: left;
+  font-family: $body-font;
+  width: 8vw;
+  transition: background-color 1s;
+  opacity: 1;
+}
+
+.calendar-card-week:hover {
+  opacity: 0.5;
+}
+
+.btn-flat {
+  color: white;
+  padding: 0.35em 1.2em;
+  border-radius: 0.5em;
+  margin: 0 0.3em 0.3em 0;
+  background: $sub-headers-color;
+  transition: 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-flat p {
+  color: white;
+}
+
+.btn-flat:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1, 1.1);
+  color: white;
+  background: $sub-headers-color;
+}
+
+.calendar-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.calendar-buttons i {
+  margin-right: 1rem;
+}
+
+
+.calendar-heading {
+  border-color: #fff;
+  font-family: $sub-headers-font;
+  color: $sub-headers-color;
+  font-size: xx-large;
+}
+
+.calendar-heading a {
+  text-decoration: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-family: $headers-font;
+  color: $sub-headers-color;
+  font-size: xx-large;
+}
+
+.calendar-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+span {
+  font-family: $headers-font;
+  color: $sub-headers-color;
+  font-size: xx-large;
+}
+
+
+
+td {
+  padding: 6px;
+  vertical-align: top;
+  width: 14%;
+
+  border: 1px solid #ddd;
+  border-top-color: rgb(221, 221, 221);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-right-color: rgb(221, 221, 221);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: rgb(221, 221, 221);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: rgb(221, 221, 221);
+  border-left-style: solid;
+  border-left-width: 1px;
+}
+
+
+.dayday {
+  text-align: right;
+  font-family: $body-font;
+  color: $body-color;
+  font-size: 1rem;
+}
+
+.simple-calendar thead {
+  text-align: center;
+  font-family: $headers-font;
+  color: $sub-headers-color;
+  font-size: 1.5rem;
+  background-color: rgba(244, 105, 26, 0.06);
+
+  th {
+    text-align: center;
+  }
+}
+
+
+
+
+
+.hidden {
+  display: none;
+}
+
+.simple-calendar {
+
+  .wday-0 {
+    color: #f00;
+  }
+
+  .wday-1 {
+    color: #000;
+  }
+
+  .wday-2 {
+    color: #000;
+  }
+
+  .wday-3 {
+    color: #000;
+  }
+
+  .wday-4 {
+    color: #000;
+  }
+
+  .wday-5 {
+    color: #000;
+  }
+
+  .wday-6 {
+    color: #f00;
+  }
+
+  .today {
+    background-color: #f0f0f0;
+  }
+
+  .past {
+    color: #ccc;
+  }
+
+  .future {
+    color: #000;
+  }
+
+  .start-date {
+    background-color: #f0f0f0;
+  }
+
+  .prev-month {
+    color: #ccc;
+  }
+
+  .next-month {
+    color: #ccc;
+  }
+
+  .current-month {
+    color: #000;
+  }
+
+  .has-events {
+    background-color: #f0f0f0;
+  }
+
+}
+
+.index-icons {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.switching {
+  // margin-bottom: 1rem;
+  margin-left: 1rem;
+
+  // align-items: center;
+  .btn-flat {
+    margin-bottom: 0;
+
+  }
+}
+
+.index-icon {
+  background-color: $headers-color;
+}
+
+.refresh {
+  padding-top: 1.5rem;
+  margin: 0.7rem;
+  text-align: center;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.refresh i:hover {
+  opacity: 0.5;
+}
+
+.add-button {
+  opacity: 1;
+  transition: 0.3s ease;
+}
+
+.add-button:hover {
+  // opacity: 0.5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1, 1.1);
+}
+
+.avatar-search {
+  margin-top: 1rem;
+  margin-top: 44px;
+  align-items: center;
+  display: flex;
+  background-color: white;
+  // padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-left: 5px;
+  border-radius: 8px;
+}
+
+
+.avatar-search i {
+  margin-right: 1rem;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+
+.avataravatar {
+  align-items: center;
+  display: flex;
+  padding: 2rem;
+  margin-left: 5px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-organizing {
+  margin-top: 2rem;
+  align-items: center;
+  display: flex;
+  background-color: $containers-color;
+  padding: 1rem;
+  margin-left: 5px;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s ease;
+  text-decoration: none;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+// .btn-organizing p:hover {
+//   // color: $containers-color;
+// }
+
+.btn-organizing:hover {
+  // background-color: $sub-headers-color;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1, 1.1);
+  background: white;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.btn-organizing-new {
+  align-items: center;
+  display: flex;
+  background-color: $containers-color;
+  padding: 1rem;
+  margin-left: 5px;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s ease;
+  text-decoration: none;
+  margin-right: 16px;
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+.btn-organizing-new:hover {
+  // background-color: $sub-headers-color;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1, 1.1);
+  background: white;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+
+.btn-organizing i:hover {
+  color: white;
+}
+
+.btn-organizing p {
+  margin: 2px;
+  color: $sub-headers-color;
+  font-weight: bold;
+}
+
+.btn-organizing i {
+  margin-right: 1rem;
+  background-color: $containers-color;
+  color: black;
+}
+
+.btn-analytics {
+  color: black;
+  align-items: center;
+  display: flex;
+  background-color: $containers-color;
+  padding: 1rem;
+  margin-left: 5px;
+  margin-bottom: 47px;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+// .btn-analytics p:hover {
+//   color: $containers-color;
+//   ;
+// }
+
+.btn-analytics:hover {
+  // background-color: $sub-headers-color;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1, 1.1);
+}
+
+.btn-analytics i:hover {
+  color: white;
+}
+
+.btn-analytics p {
+  margin: 2px;
+  color: $sub-headers-color;
+  font-weight: bold;
+}
+
+.btn-analytics i {
+  margin-right: 1rem;
+}
+
+
+.created-meeting {
+  align-items: center;
+  padding: 2rem;
+  margin-left: 5px;
+  display: none;
+}
+
+
+
+.meeting-title {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  transition: $containers-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.meeting-title:hover {
+  background-color: darkgray;
+}
+
+.meeting-title p {
+  margin-left: 1rem;
+  padding-top: 1rem;
+  text-align: left;
+  color: #000064;
+}
+
+.meeting-title-a {
+  font-weight: bold;
+}
+
+
+.meeting-start-time {
+  display: flex;
+  align-items: center;
+}
+
+.meeting-start-time p {
+  margin-left: 1rem;
+  padding-top: 1rem;
+}
+
+.meeting-duration {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.meeting-duration p {
+  margin-left: 1rem;
+  padding-top: 1rem;
+}
+
+.meeting-attendees {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.meeting-attendees p {
+  margin-left: 1rem;
+  padding-top: 1rem;
+}
+
+
+
+
+@media (max-width: 800px) {
+  .index-container {
+    grid-template-columns: 1fr;
+
+    .right {
+      width: 100%;
+
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+
+        .simple-calendar {
+          width: 90vw;
+        }
+
+        .calendar-buttons {
+          width: 90vw;
+        }
+      }
+    }
+
+    .left {
+      padding: 1rem;
+
+      input {
+        width: 60vw;
+      }
+
+    }
+
+  }
+}

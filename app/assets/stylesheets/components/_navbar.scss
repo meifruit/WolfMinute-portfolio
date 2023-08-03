@@ -1,0 +1,29 @@
+.navbar-lewagon {
+  justify-content: space-between;
+  background: white;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 200px;
+  background-color: $containers-color ;
+}
+
+.navbar {
+  background-color: $containers-color ;
+  color: $sub-headers-color;
+  width: 100vw;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: $sub-headers-color;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  color: $sub-headers-color;
+}

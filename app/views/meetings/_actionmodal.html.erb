@@ -1,0 +1,26 @@
+<button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-whatever="@mdo">Actions</button>
+<div class="modal fade" id="actionModal" tabindex="-1" aria-labelledby="actionModalLabel" aria-hidden="true">
+  <div data-controller="copy">
+    <div class="modal-dialog" style="margin-left:100px;">
+      <div class="modal-content" style="width: 1300px;">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="actionModalLabel">Actions</h1>
+          <% if !@actions.nil? %>
+            <button data-action="click->copy#copyToClipboard" class="btn btn-success m-2"><i class="fa-regular fa-clone"></i>
+              copy</button>
+          <% end %>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if @actions.nil?  %>
+            <p>No actions</p>
+          <% else %>
+            <%  @actions.each_with_index do |action, index| %>
+              <p data-copy-target="text"><%= index + 1 %>.<%= action %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

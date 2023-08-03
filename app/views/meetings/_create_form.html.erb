@@ -1,0 +1,44 @@
+<div class="container m-auto" data-controller="search-users">
+  <h1 class="input-button">New meeting</h1>
+  <form action="/meetings/new" method="get" data-search-users-target="form">
+    <input
+      type="text"
+      name="query"
+      data-search-users-target="input"
+      data-action="keyup->search-users#search"
+      value="<%= params[:query] %>"
+      >
+    </form>
+    <div id="form-container" data-controller="form-steps">
+      <%= simple_form_for @meeting, data: { controller: 'flatpickr' } do |f| %>
+        <div class="input-button" data-form-steps-target="step">
+          <div data-search-users-target="users">
+            <% if @users_filtered.present? && @users_filtered.length.positive? %>
+              <%= render 'list' %>
+            <% else %>
+              <p>No users found.</p>
+            <% end %>
+          </div>
+          <div data-search-users-target="usersClicked" class="hidden"></div>
+          <button type="button" data-action="click->form-steps#nextStep" class="button-general ml-3" role="button">Next</button>
+        </div>
+        <div data-form-steps-target="step" class="hidden">
+          <%= f.input :description %>
+          <button type="button" data-action="click->form-steps#nextStep" class="button-general" role="button">Next</button>
+        </div>
+        <div data-form-steps-target="step" class="hidden">
+          <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+          <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
+          <button type="button" data-action="click->form-steps#nextStep" class="button-general" role="button">Next</button>
+        </div>
+        <div data-form-steps-target="step" class="hidden">
+          <%= f.input :duration %>
+          <button type="button" data-action="click->form-steps#nextStep" class="button-general" role="button">Next</button>
+        </div>
+        <div data-form-steps-target="step" class="hidden">
+          <%= f.input :location %>
+          <%= f.submit class:"button-general", role:"button"%>
+        </div>
+      <% end %>
+    </div>
+  </div>

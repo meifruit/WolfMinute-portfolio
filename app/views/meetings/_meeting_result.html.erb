@@ -1,0 +1,24 @@
+<div class="d-flex" class="input-button animate__animated animate__fadeInRight" style="margin-left: 64px; width:100%;">
+  <img src="<%=asset_path('logo.png')%>" style="height: 50px;" alt="">
+  <!-- Button trigger modal -->
+  <div>
+    <div data-controller="popover">
+      <p data-action="mouseenter->popover#show mouseleave->popover#hide" >Optimal Duration: <%= duration %></p>
+      <template data-popover-target="content">
+        <div class= "reason-duration" data-popover-target="card">
+          <p>Reason: <%= reason_duration %> </p>
+        </div>
+      </template>
+    </div>
+    <p>Available Room: <%= @location %></p>
+    <div class="d-flex">
+      <p>Next Available meeting:</p>
+      <input class = "form-output" type="datetime-local" name="start_date" id="meeting_start_date" style=" width: 345px; margin-right: 25px; margin-left: 25px; background: lavender" data-flatpickr-target="startTime" data-form-steps-target="startTime" value="<%= next_available_start_date.strftime('%Y-%m-%dT%H:%M') %>">
+      <input class = "form-output" type="datetime-local" name="end_date" id="meeting_end_date" style="width: 345px; background: lavender" data-flatpickr-target="endTime" data-form-steps-target="endTime" id="end_time" value="<%= next_available_end_date.strftime('%Y-%m-%dT%H:%M') %>">
+    </div>
+    <textarea style="width: 930px;"autocomplete="off" type="" name="meeting[objectives]" id="meeting_objectives"><%= sanitize objectives_and_agenda_text %></textarea>
+    <div style="margin-top: 32px; border: none;">
+      <input  type="submit" name="commit" value="Book the Meeting" class="button-general" role="button" data-disable-with="Create Meeting">
+    </div>
+  </div>
+</div>

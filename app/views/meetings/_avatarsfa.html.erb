@@ -1,0 +1,7 @@
+ <% if users.length >= 1 %>
+  <% users.each do |user|%>
+    <%= link_to meetings_analytics_path(user_id: user.id, query: params[:query], tab:"conversations-tab"), class:"text-decoration-none" do %>
+      <%= image_tag user.photo.key ? cl_image_path(user.photo.key) :  "gorilla.jpg", class: "avatar m-1"%>
+    <% end %>
+  <% end %>
+<% end %>

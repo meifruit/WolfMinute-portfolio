@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-danger m-3" data-bs-toggle="modal" style="color: white;"data-bs-target="#exampleModal" data-bs-whatever="@mdo">End meeting</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="margin-left:100px;">
+    <div class="modal-content" style="width: 1300px;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Meeting Summary</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="video-attendees-lol">
+        <p>Recipents</p>
+        <% @meeting.users.each do |user|%>
+          <%= image_tag user.photo.key ? cl_image_path(user.photo.key) :  "gorilla.jpg", class: "avatar  border border-3"%>
+        <% end %>
+      </div>
+      <div class="modal-body" id="form">
+        <%= render 'modal_form', video: @video %>
+      </div>
+    </div>
+  </div>
+</div>

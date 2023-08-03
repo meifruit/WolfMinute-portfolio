@@ -1,0 +1,202 @@
+<% if current_user.admin? %>
+  <div class="analytics-container">
+    <h1 class="pt-3" >Analytics</h1>
+    <%# tab %>
+    <ul class="nav tabs-underlined d-flex justify-content-center" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <span class="nav-link tab-underlined <%= params[:tab] == "conversations-tab" ? '' : 'active' %>" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" role="tab" aria-controls="all-tab-pane" aria-selected="true">All</span>
+      </li>
+      <li class="nav-item" role="presentation">
+        <span class="nav-link tab-underlined" id="thismonth-tab" data-bs-toggle="tab" data-bs-target="#thismonth-tab-pane" role="tab" aria-controls="thismonth-tab-pane" aria-selected="false">This Month</span>
+      </li>
+      <li class="nav-item" role="presentation">
+        <span class="nav-link tab-underlined" id="lastmonth-tab" data-bs-toggle="tab" data-bs-target="#lastmonth-tab-pane" role="tab" aria-controls="lastmonth-tab-pane" aria-selected="false">Last Month</span>
+      </li>
+      <li class="nav-item" role="presentation">
+        <span class="nav-link tab-underlined <%= 'active' if params[:tab] == "conversations-tab" %>" id="conversations-tab" data-bs-toggle="tab" data-bs-target="#conversations-tab-pane" role="tab" aria-controls="conversations-tab-pane" aria-selected="false">Individual</span>
+      </li>
+    </ul>
+    <%# tab %>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade py-3  <%= params[:tab] == "conversations-tab" ? '' : 'show active' %>" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+        <div class="data-container" style="padding-left:150px; padding-right:150px;">
+          <div class="d-flex justify-content-between">
+            <%# all from here %>
+            <p style="color:">Number of users : </p>
+            <p> <%= @users.count %> </p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total duration : </p>
+            <p><%= @total_duration_a %> min</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Average duration : </p>
+            <p><%= @all_average %> min</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total number of meetings : </p>
+            <p><%= @allcount %></p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="text-left">The top creator : </p>
+            <p><%= @top[0]%>, <%= @top[1] %> meetings</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total cost of meetings : </p>
+            <p>¥ <%= @total_cost.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></p>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas data-controller="chart"
+                data-chart-data-value="<%= @chart_data.to_json %>" data-chart-options-value="<%= @chart_options.to_json %>">
+          </canvas>
+        </div>
+        <%# all until here  %>
+      </div>
+      <div class="tab-pane fade py-3" id="thismonth-tab-pane" role="tabpanel" aria-labelledby="thismonth-tab" tabindex="0">
+        <%# this month from here %>
+        <div class="data-container" style="padding-left:150px; padding-right:150px;">
+          <div class="d-flex justify-content-between">
+            <p>Total duration : </p>
+            <p><%= @this_total %> min</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Average duration : </p>
+            <p><%= @this_average %> min</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total number of meetings : </p>
+            <p><%= @this_count %></p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="text-left">The top creator : </p>
+            <p><%= @this_top[0]%>, <%= @this_top[1] %> meetings</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total cost of meetings : </p>
+            <p>¥ <%= @this_cost.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></p>
+          </div>
+        </div>
+        <%# this month until here %>
+      </div>
+      <div class="tab-pane fade py-3" id="lastmonth-tab-pane" role="tabpanel" aria-labelledby="lastmonth-tab" tabindex="0">
+        <%# last month from here %>
+        <div class="data-container" style="padding-left:150px; padding-right:150px;">
+          <div class="d-flex justify-content-between">
+            <p>Total duration : </p>
+            <p><%= @last_total %> min</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Average duration : </p>
+            <p><%= @last_average %> min</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total number of meetings : </p>
+            <p><%= @last_count %></p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="text-left">The top creator : </p>
+            <p><%= @last_top[0]%>, <%= @last_top[1] %> meetings</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Total cost of meetings : </p>
+            <p>¥ <%= @last_cost.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></p>
+          </div>
+        </div>
+        <%# last month until here %>
+      </div>
+      <div class="tab-pane fade py-3 <%= 'show active' if params[:tab] == "conversations-tab" %>" id="conversations-tab-pane" role="tabpanel" aria-labelledby="conversations-tab" tabindex="0">
+        <%# individual from here %>
+        <div class="analytics-container d-flex justify-content-center">
+          <div class="avatar-search-a" data-controller="search-users">
+            <i class="fa-solid fa-user-group fa-2xl" style="color: #000064;"></i>
+            <form action="/meetings/analytics" method="get" data-search-users-target="form">
+              <input
+          type="text"
+          name="query"
+          data-search-users-target="input"
+          data-action="keyup->search-users#search"
+                value="<%= params[:query] %>"
+                >
+              </form>
+              <div id="form-container" class="avataravatar-a">
+                <div>
+                  <div data-search-users-target="users">
+                    <% if @users_filtered.present? && @users_filtered.length.positive? %>
+                      <%= render 'avatarsfa', users: @users_filtered %>
+                    <% end %>
+                  </div>
+                </div>
+                <div data-search-users-target="usersClicked" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div class="data-container" style="padding-left:36px; padding-right:36px; width:600px;">
+              <p></p>
+              <div class="d-flex justify-content-between">
+                <p>User name :</p>
+                <p><%= @user.name%></p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p>Wages per month</p>
+                <p>¥ <%= @user.wage.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,')%></p>
+              </div>
+              <p></p>
+              <p>Result of this month</p>
+              <p></p>
+              <div class="d-flex justify-content-between">
+                <p>Total duration : </p>
+                <p><%= @this_user_total %> min</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p>Average duration : </p>
+                <p><%= @this_user_average %> min</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p>Total number of meetings : </p>
+                <p><%= @this_user_count %></p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p>Ratio of meetings to work hours :</p>
+                <p><%= @user_percentage %> %</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p>Wages for meetings :</p>
+                <p>¥ <%= @user_meeting_wages.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <p></p>
+              <p>Total cost of meetings</p>
+              <p></p>
+              <canvas data-controller="chart"
+                data-chart-data-value="<%= @chart_data_second.to_json %>" data-chart-options-value="<%= @chart_options_second.to_json %>">
+              </canvas>
+            </div>
+            <%# individual until here %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%# tab %>
+  <% else %>
+    <%# non-admin users page %>
+    <div class="analytics-container">
+      <h1>Analytics</h1>
+      <div class="d-flex justify-content-between">
+        <p>Total number of meetings : </p>
+        <p><%= current_user.meetings.count %></p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p>Total duration :</p>
+        <% user_total_d = 0 %>
+        <% current_user.meetings.each { |meeting| user_total_d += meeting.duration.to_i} %>
+        <p><%= user_total_d %></p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p>Average duration</p>
+        <p><%= user_total_d / current_user.meetings.count %></p>
+      </div>
+    </div>
+  <% end %>

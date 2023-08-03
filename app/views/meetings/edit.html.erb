@@ -1,0 +1,35 @@
+<div class="container m-auto " data-controller = "search-users">
+  <h1>Edit</h1>
+  <form action="/meetings/new" method="get" data-search-users-target= "form">
+    <input type="text"name="query"
+      data-search-users-target = "input"
+      data-action = "keyup->search-users#search"
+    value= "<%= params[:query] %>"
+    >
+  </form>
+  <%= simple_form_for @meeting,
+    data: {controller: 'flatpickr'} do |f| %>
+    <div data-search-users-target="users">
+      <%#= render 'list' if @users_filtered.length.positive? %>
+      <% if @users_filtered.length >= 1 %>
+        <% @users_filtered.each_with_index do |user, index| %>
+          <input
+            id= "name<%= index %>"
+            type="checkbox"
+            name="users[]"
+            value= "<%= user.name%>">
+            <label for="name<%=index%>">
+              <%= image_tag user.photo.key ? cl_image_path(user.photo.key) :  "gorilla.jpg", class: "avatar"%>
+              <%= user.name %>
+            </label>
+          <% end %>
+        <% end %>
+      </div>
+      <%= f.input :description %>
+      <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" }  }  %>
+      <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time'  }  %>
+      <%= f.input :duration %>
+      <%= f.input :location %>
+      <%= f.submit %>
+    <% end %>
+  </div>

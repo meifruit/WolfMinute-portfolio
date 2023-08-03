@@ -1,0 +1,18 @@
+<div class="time-bar-container">
+  <div class="progress-bar"  data-controller="progress-bar" data-progress-bar-duration-value="<%= @meeting.duration.to_i%>">
+    <div class="progress" id="progress" data-progress-bar-target="progress" ><i class="fa-solid fa-clock fa-2xl" style="color: #c7d317;"></i></div>
+  </div>
+  <div class="time-bar">
+    <div class="time-agenda">
+      <% @meeting.objectives.scan(/From (\d{2}:\d{2}) to \d{2}:\d{2} (.+) \(\d+ minutes\)/).each do |li|%>
+        <div class="time-description" >
+          <p class="time-time"><span class="marker"><i class="fa-solid fa-circle fa-sm"></i></span>  <%= li[0] %></p>
+          <p class="time-title text-muted"> <%= li[1]%></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="end-time">
+      <p> <span class="marker"><i class="fa-solid fa-circle fa-sm"></i></span><%= (@meeting.start_date - 9.hours + (@meeting.duration.to_i * 60)).strftime("%H:%M") %></p>
+    </div>
+  </div>
+</div>

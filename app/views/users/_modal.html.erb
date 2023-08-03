@@ -1,0 +1,28 @@
+<div class="modal fade" id="user_<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-popover-target="card"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Attendee
+          details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li data-action="click->meeting#toggleDiv">
+            <%= user.name%>
+          </li>
+          <div class="worker">
+            <p>Mobile: <%= user.mobile%></p>
+            <p>Email: <%= user.email %></p>
+            <p>Position: <%= user.job_title %></p>
+          </div>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

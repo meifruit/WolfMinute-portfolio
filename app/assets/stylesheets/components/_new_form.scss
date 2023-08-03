@@ -1,0 +1,81 @@
+.input-button {
+  display: flex;
+}
+
+img .avatar {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+
+}
+
+img .logoimg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: $background-color;
+}
+
+.optimaltime p {
+  font-size: revert;
+}
+
+.outer-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 24px;
+  background: $background-color;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  box-shadow: 0px 0px 5px black;
+  border-radius: 2px;
+  padding: 24px;
+  margin: auto;
+}
+
+.form-output {
+  border: none;
+  outline: none;
+  margin-right: 20px;
+  background: lavender;
+  border-radius: 5px;
+  padding: 6px;
+  box-shadow: 0px 0px 2px;
+}
+
+#meeting_objectives {
+  border: none;
+  width: 100%;
+  margin-top: 24px;
+  height: 350px;
+  background: lavender;
+  border-radius: 5px;
+  padding: 6px;
+  box-shadow: 0px 0px 2px;
+}
+
+.reason-duration {
+  // background: lavender;
+  width: 720px;
+  // position: absolute;
+  // border-radius: 4px;
+  // box-shadow: 0px 0px 1px black;
+  padding: 8px;
+
+}
+
+// div:has(.reason-duration) {
+//   position: relative;
+// }
+
+.formmessage {
+
+  p {
+    margin-top: 5px;
+
+    margin-bottom: 0;
+  }
+}

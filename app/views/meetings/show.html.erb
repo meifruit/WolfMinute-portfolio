@@ -1,0 +1,112 @@
+<div style= "background: lavender;"class="container" data-controller="meeting">
+  <div class="grid">
+    <div class='g-col-8'>
+      <div class="meeting-card mt-5">
+        <h3 class="text-center">
+          <%= noun_project_icon("icon", class: "my-custom-class") %>
+          <% if @meeting.title.include?('"') %>
+            <%= @meeting.title[1..-2].capitalize %>
+          <% else %>
+            <%= @meeting.title.capitalize%>
+          <% end %>
+        </h3>
+        <div class="grid">
+          <div class="g-col-4">
+            <p> <i class="fa-solid fa-clock me-1"></i> <%= @start_time.strftime("%A, %d %b %Y %l:%M %p") %>- <%= @end_time.strftime("%l:%M %p") %></p>
+            <p><i class="fa-solid fa-clock-rotate-left me-1"></i> <%= @meeting.duration  %> minutes</p>
+            <p><i class="fa-solid fa-house-circle-exclamation me-1"></i> <%= @meeting.location.capitalize  %></p>
+          </div>
+          <div class="g-col-4">
+            <p> <i class="fa-solid fa-comment me-1"></i> <%= @meeting.description %></p>
+            <p><i class="fa-solid fa-sitemap me-1"></i> <%= @meeting.user.name  %></p>
+            <div class="d-flex" >
+              <p><i class="fa-solid fa-users-line me-4"></i></p>
+              <% @meeting.users.each do |user| %>
+                <div data-controller="popover" data-popover-url-value="<%= user_card_path(user)%>">
+                  <div data-action="mouseenter->popover#show mouseleave->popover#hide" class="user-card-container">
+                    <%=  user.photo.attached? ? cl_image_tag(user.photo.key, class: "avatar me-1 overlap") : image_tag(
+              "gorilla.jpg", class: "avatar me-1 overlap")%>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="g-col-4">
+            <div class="landing">
+              <%= form_with(url: meeting_name_path(@meeting), method: "post") do %>
+                <%= submit_tag "Join meeting", class: "btn btn-primary w-100 mb-3"%>
+                <% flash.each do |type, msg| %>
+                  <p class="error"><%= msg %></p>
+                <% end %>
+              <% end %>
+            </div>
+            <p class="btn btn-success border-primary m-0 w-100"><i class="fa-regular fa-file-lines me-1"></i><%= render 'meetings/summarymodal' %></p>
+            <p class="btn btn-success border-primary m-0 w-100"><i class="fa-solid fa-circle-check me-1"></i><%= render 'meetings/actionmodal' %></p>
+          </div>
+        </div>
+      </div>
+      <div class="meeting-card mt-4">
+        <h3>Objectives</h3>
+        <% @objectives.each do |objective|%>
+          <p><%= objective %></p>
+        <% end %>
+        <h3>Agenda</h3>
+        <% @agenda.each do |time|%>
+          <p><%= time %></p>
+        <% end %>
+        <% if current_user == @organizer %>
+          <div class="d-flex">
+            <%= link_to edit_meeting_path do %>
+              <i class="fa-regular fa-pen-to-square me-1"></i>
+            <% end %>
+            <%= link_to meeting_path(@meeting), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the #{@meeting.title.capitalize}? "} do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="g-col-4">
+      <%# <div class="meeting-card mb-4"> %>
+      <%#= @summary %>
+      <%#= @actions %>
+      <%# <h5>Summary</h5>
+        <div data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+          <p class="my-content" data-read-more-target="content">We welcomed Jack Peterson, our Southwest Area Sales Vice President, and introduced Margaret Simmons, a new team member.
+            Tom Robbins summarized the main points from our previous meeting, which focused on approving changes to the sales reporting system and discussing after customer support improvements.
+            Jack Peterson presented a report highlighting the need for special assistance for rural customers to feel valued, the importance of providing accurate customer information to our sales teams, and plans for conducting a survey on spending habits in rural areas.
+            Due to time constraints, further discussions were postponed, and we scheduled our next meeting for Friday in two weeks' time at 9 o'clock.
+          </p>
+          <button data-action="read-more#toggle">Read more</button>
+        </div>
+      </div>
+      <div class="meeting-card mb-4">
+        <h5>Actions</h5>
+        <div data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+          <p class="my-content" data-read-more-target="content">1. Develop an advertising campaign to focus on the particular needs of rural customers.\n   Responsible: John Ruting\n\n2. Provide better customer information reporting to the rural sales teams.\n   Responsible: Alice Linnes\n\n3. Conduct a survey to collect data on spending habits in rural areas.\n   Responsible: To be assigned not specified in the meeting transcript</p>
+          <button data-action="read-more#toggle">Read more</button>
+        </div>
+      </div> %>
+      <%# <div class="chatroom mt-4"> %>
+      <div class="container chatroom mt-5" style="background: white;"
+              data-controller="meeting-subscription"
+              data-meeting-subscription-meeting-id-value="<%= @meeting.id %>">
+        <%# <h1>#<%= @meeting.name %>
+        <div class="messages" data-meeting-subscription-target="messages">
+          <% @meeting.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
+        </div>
+        <% if @meeting.nil? # || @message.nil? %>
+          <p>Cannot render the form. Missing meeting or message.</p>
+        <% else %>
+          <%= simple_form_for [@meeting, @message],html: {class: "d-flex"} do |f|%>
+            <%= f.input :content,label: false,placeholder: "Message ##{@meeting.title}",wrapper_html: {class: "flex-grow-1"}%>
+            <%= f.submit "Send", class: "btn btn-primary mb-3 fa-fade" %>
+          <% end %>
+        <% end %>
+      </div>
+      <%# </div> %>
+    </div>
+  </div>
+</div>

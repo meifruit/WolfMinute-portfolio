@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WolfMinute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= favicon_link_tag asset_path('logo.png')%>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <% unless current_page?(root_path) %>
+      <%= render "shared/navbar" %>
+      <%= render "shared/flashes" %>
+    <% end %>
+    <%= yield %>
+    <div id="loader" style="display: none;"></div>
+  </body>
+</html>

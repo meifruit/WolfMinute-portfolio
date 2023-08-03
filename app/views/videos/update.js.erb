@@ -1,0 +1,3 @@
+console.log("test")
+document.getElementById("form").innerHTML = "<%= j render 'video/modal_form', video: @video %>"
+window.location.href = "/meetings/<%= @meeting.id %>";

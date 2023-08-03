@@ -1,0 +1,75 @@
+.meeting-card {
+  // margin: 2rem;
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border-color: 1px;
+  // height: 90%;
+  padding: 2rem;
+  // display: flex;
+  // flex-direction: column;
+  // background-color: white;
+  // position: sticky;
+  top: 80px;
+  // width: fit-content;
+  // align-self: auto;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  background-color: $containers-color;
+}
+
+// .chat-card {
+//   background-color: $containers-color;
+//   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+//   border-radius: 10px;
+//   border-color: 1px;
+//   // height: 90%;
+//   padding: 2rem;
+//   // display: flex;
+//   // flex-direction: column;
+//   // background-color: white;
+//   // position: sticky;
+//   top: 80px;
+// }
+.my-content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--read-more-line-clamp, 2);
+}
+
+.fa-clock {
+  color: #757575;
+  font-size: large;
+}
+
+.fa-clock-rotate-left {
+  color: #757575;
+  font-size: large;
+}
+
+.fa-house-circle-exclamation {
+  color: #757575;
+  font-size: large;
+
+}
+
+.fa-link {
+  color: #757575;
+  font-size: large;
+
+}
+
+.fa-comment {
+  color: #757575;
+  font-size: large;
+}
+
+.fa-sitemap {
+  color: #757575;
+  font-size: large;
+}
+
+.fa-users-line {
+  color: #757575;
+  font-size: large;
+}
