@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: WolfMinute_production
-  username: WolfMinute
-  password: <%= ENV["WOLFMINUTE_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  # database: WolfMinute_production
+  # username: WolfMinute
+  # password: <%= ENV["WOLFMINUTE_DATABASE_PASSWORD"] %>
