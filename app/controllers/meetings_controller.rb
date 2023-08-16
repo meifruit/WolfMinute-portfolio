@@ -81,8 +81,17 @@ class MeetingsController < ApplicationController
      user_total.max{ |x, y| x[1] <=> y[1] }
     end
 
+    # def average(date)
+    #   total_duration(date) / total_count(date)
+    # end
+
     def average(date)
-      total_duration(date) / total_count(date)
+     count = total_count(date)
+     if count > 0
+      total_duration(date) / count
+     else
+       0  # or handle the case when count is zero appropriately
+     end
     end
 
     # thismonth all
