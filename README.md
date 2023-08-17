@@ -55,9 +55,9 @@ rails s
 - [Figma](https://www.figma.com) — Prototyping
 
 ## Team Members
-- [Xuemei Huang]
-- [Rika Saito]
-- [Jun Ukemori]
-- [Juan David Bernal]
+- Xuemei Huang
+- Rika Saito
+- Jun Ukemori
+- Juan David Bernal
 
 
