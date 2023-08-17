@@ -3,10 +3,11 @@ Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/ra
 
 <p align="center">Meeting application</p>
 
-<a href="https://photo-ronin.herokuapp.com/"><img src="https://github.com/ctyamashita/photo-ronin/blob/main/app/assets/"/></a>
+<a href="https://wolfminute.onrender.com/"><img src="https://github.com/meifruit/WolfMinute-portfolio/blob/master/app/assets/images/calendar.png"/></a>
 - <p>Click on the image above to checkout the web app! ☝</p>
 
-<img src="https://github.com/ctyamashita/photo-ronin/blob/main/app/assets/images/" />
+<img src="https://github.com/meifruit/WolfMinute-portfolio/blob/master/app/assets/images/calendarshow.png"/>
+<img src="https://github.com/meifruit/WolfMinute-portfolio/blob/master/app/assets/images/analystic.png"/>
  
 <br>
 
