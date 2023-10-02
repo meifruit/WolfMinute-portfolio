@@ -4,10 +4,6 @@ Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/ra
 <p align="center">Meeting application</p>
 <p>   An innovative meeting calendar that revolutionizes scheduling. Easily manage your schedule, meeting dates, rooms, and attendees, with AI-driven suggestions for meeting objectives. Seamlessly join video calls, participate in chats, and explore in-depth meeting analytics. Discover a complete solution for productive meetings, conveniently accessible. Plus, effortlessly create meetings by leveraging AI to find optimal times when all attendees are available.</p>
 
-- (Click on the image below to checkout the web app!)
-<a href="https://wolfminute.onrender.com/" target="_blank"><img src="https://github.com/meifruit/WolfMinute-portfolio/blob/master/app/assets/images/calendar.png"/></a>
-
-
 <img src="https://github.com/meifruit/WolfMinute-portfolio/blob/master/app/assets/images/calendarshow.png"/>
 <img src="https://github.com/meifruit/WolfMinute-portfolio/blob/master/app/assets/images/analystic.png"/>
  
